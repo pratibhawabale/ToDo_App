@@ -1,0 +1,11 @@
+{%extends 'main.html'%}
+{%block content%}
+<form action="" method="POST">
+    {%csrf_token%}
+    <p>
+    Are You sure you want to delete?
+    <input type="submit" value="Delete">
+    </p>
+</form>
+<button onclick="history.back()">Go Back</button>
+{%endblock content%}

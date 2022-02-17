@@ -1,0 +1,53 @@
+{%extends 'main.html'%}
+
+{%block content%}
+
+<h3>To Do List</h3>
+<a href="{% url 'add-todo' %}">add_todo</a>
+<h4>To Be Completed </h4>
+<ul>
+    {% for todo in todos %}
+    {%if todo.completed == 'False' %}
+    <li>{{todo.title}} | Deadline: {{todo.deadline}} | 
+        <Small>
+            <a href="{%url 'view-todo' todo.id%}">view</a>
+        </Small>
+        
+        <Small>
+            <a href="{%url 'update-todo' todo.id%}">update</a>
+        </Small>
+
+        <Small>
+            <a href="{%url 'delete-todo' todo.id%}">delete</a>
+        </Small>
+        
+    </li>
+    {%endif%}
+    {%endfor%}
+</ul>
+
+<hr>
+
+<h4>Completed </h4>
+<ul>
+{% for todo in todos %}
+{%if todo.completed == 'True' %}
+<li>{{todo.title}} | Deadline: {{todo.deadline}} | 
+    <Small>
+        <a href="{%url 'view-todo' todo.id%}">view</a>
+    </Small>
+    
+    <Small>
+        <a href="{%url 'update-todo' todo.id%}">update</a>
+    </Small>
+
+    <Small>
+        <a href="{%url 'delete-todo' todo.id%}">delete</a>
+    </Small>
+    
+</li>
+{%endif%}
+{%endfor%}
+</ul>
+
+{%endblock content%}

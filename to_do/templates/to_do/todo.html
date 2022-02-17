@@ -1,0 +1,29 @@
+{%extends 'main.html'%}
+{%block content%}
+<h3>ToDo</h3>
+<h4>Title : {{todo.title}}</h4>
+<h5>Deadline : {{todo.deadline}}</h5>
+<h5>Status :
+    {%if todo.completed == 'True' %}
+    Completed
+    {%else%}
+    To Be Completed
+    {%endif%}
+</h5>
+
+<p>
+<Small>
+    <a href="{%url 'update-todo' todo.id%}">update</a>
+</Small>
+|
+<Small>
+    <a href="{%url 'delete-todo' todo.id%}">delete</a>
+</Small>
+</p>
+<hr>
+Description
+<p>
+    {{todo.description}}
+</p>
+
+{%endblock content%}

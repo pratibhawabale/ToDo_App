@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{%block content%}
+<h3>Add ToDo</h3>
+<form action="" method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" placeholder="Add-To-Do">
+</form>
+{%endblock content%}
