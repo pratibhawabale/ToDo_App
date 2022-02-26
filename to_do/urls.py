@@ -8,4 +8,6 @@ urlpatterns = [
     path('update-todo/<str:pk>/', views.update_todo, name='update-todo'),
     path('view-todo/<str:pk>/', views.view_todo, name='view-todo'),
     path('delete-todo/<str:pk>/', views.delete_todo, name='delete-todo'),
+
+    path('login/', views.login_user, name='login'),
 ]

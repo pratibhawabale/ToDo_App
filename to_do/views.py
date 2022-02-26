@@ -3,9 +3,33 @@ from django.shortcuts import redirect, render
 
 from .models import ToDo
 from .forms import ToDoForm
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
+
+def login_user(request):
+    if request.user.is_authenticated: 
+        return redirect("home")
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        try:
+            user = User.objects.get(username=username)
+        except:
+            print("Error occured !!")
+        
+        user = authenticate(request, username = username, password = password) 
+        # returns None if password not matched
+        
+        if user is not None:
+            login(request, user)          #It will create session for this user in database
+            			                #check inspect --> application --> cookies
+            return redirect ("login")
+        else:
+            #messages.error(request,"Invalid username or password")
+            print("Invalid username or password !!")
+    return render(request,'to_do/login.html')
 
 def home(request):
     todos = ToDo.objects.all()
